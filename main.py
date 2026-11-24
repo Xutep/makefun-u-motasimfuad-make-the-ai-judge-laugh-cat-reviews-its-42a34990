@@ -12,10 +12,16 @@ REVIEW = (
 )
 
 
-def main():
+def review():
+    """Return the single-line review, validated against the gate."""
     text = REVIEW.strip()
     assert 1 <= len(text) <= 200, f"review is {len(text)} chars, must be 1-200"
     assert "\n" not in text, "review must be a single line"
+    return text
+
+
+def main():
+    text = review()
     os.makedirs("/output", exist_ok=True)
     with open("/output/entry.txt", "w", encoding="utf-8", newline="") as f:
         f.write(text)
